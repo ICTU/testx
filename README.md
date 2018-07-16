@@ -1,5 +1,5 @@
-[![npm version](https://badge.fury.io/js/testx.svg)](https://badge.fury.io/js/testx)
-[![Build Status](https://travis-ci.org/testxio/testx.svg?branch=master)](https://travis-ci.org/testxio/testx)
+[![npm version](https://badge.fury.io/js/@ictu/testx.svg)](https://badge.fury.io/js/@ictu/testx)
+[![Build Status](https://travis-ci.org/ICTU/testx.svg?branch=master)](https://travis-ci.org/ICTU/testx)
 
 testx
 =====
@@ -16,7 +16,7 @@ A library for executing keyword driven tests with Protractor.
 - [Additional keyword packages](#additional-keyword-packages)
 
 ## What is testx?
-Testx is a library for executing keyword driven tests with Protractor. It provides a very simple abstraction for writing logicless test scripts. A **testx** test script is just a list of steps, that are executed in sequence. Each step performs an action and/or checks the state of the application under test against expected conditions. This intuitive concept makes the tests easy to write and read. While **testx** is built on top of Protractor it does not require programming knowledge. For example:
+Testx is a library for executing keyword driven tests with Protractor. @ictu/testx is a fork maintained and used by ICTU (www.ictu.nl). It provides a very simple abstraction for writing logicless test scripts. A **testx** test script is just a list of steps, that are executed in sequence. Each step performs an action and/or checks the state of the application under test against expected conditions. This intuitive concept makes the tests easy to write and read. While **testx** is built on top of Protractor it does not require programming knowledge. For example:
 
 in Protractor you do:
 
@@ -157,11 +157,7 @@ Create a protractor project. For a sample project clone https://github.com/testx
 
 Add this module to your project:
 
-	npm install testx --save
-
-This is already done in the sample project so there you only need to:
-
-	npm install
+	npm install @ictu/testx --save
 
 ## Run
 
