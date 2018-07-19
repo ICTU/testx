@@ -49,7 +49,11 @@ keywords =
       do -> ctx[key] = val
   'check equals': (args, ctx) ->
     for key, val of args
-      expect(get key).toEqual val, assertFailedMsg(ctx)
+      if typeof val in ['boolean', 'number', 'string']
+        expect(get key).toBe val, assertFailedMsg(ctx)
+      else
+        expect(get key).toEqual val, assertFailedMsg(ctx)
+
   'check not equals': (args, ctx) ->
     for key, val of args
       expect(get key).not.toEqual val, assertFailedMsg(ctx)
