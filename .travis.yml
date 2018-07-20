@@ -4,3 +4,9 @@ addons:
 language: node_js
 node_js:
   - "8"
+deploy:
+  provider: npm
+  email: ivan.milenkovic@ictu.nl
+  api_key: $NPM_TOKEN
+  on:
+    tags: true

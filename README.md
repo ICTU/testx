@@ -1,4 +1,4 @@
-[![npm version](https://badge.fury.io/js/@ictu/testx.svg)](https://badge.fury.io/js/@ictu/testx)
+[![npm version](https://badge.fury.io/js/%40ictu%2Ftestx.svg)](https://badge.fury.io/js/%40ictu%2Ftestx)
 [![Build Status](https://travis-ci.org/ICTU/testx.svg?branch=master)](https://travis-ci.org/ICTU/testx)
 
 testx
