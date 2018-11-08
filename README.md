@@ -207,6 +207,9 @@ Predefined keywords are:
 |                        | *object key*  | *expected*      || Yes |
 | check not equals       |               || Checks if the value of the object doesn't equal to the specified value. |            |
 |                        | *object key*  | *expected*      || Yes |
+| check time almost equals |               || Checks if the datetime value of the object equals to the specified value, with tolerance in seconds. |            |
+|                        | seconds to tolerate | number of seconds to tolerate || Yes |
+|                        | *object key*  | *expected*      || Yes |
 | check matches          |               || Checks if the value or attributes (given as key-value pairs) of the object matches the expected regular expression. ||
 |                        | *object key*  | *expected regex* || Yes |
 |                        | *object key*  | *dictionary of atttibute: regex* | e.g.: `alt: Something nice` or `height: ^\d+$` | Yes |
@@ -257,8 +260,8 @@ Predefined keywords are:
 ## Additional keyword packages
 | Npm package | Description |
 | ----------- | ----------- |
-|[testx-http-keywords](https://www.npmjs.com/package/testx-http-keywords)|Keywords to send simple http requests using the testx library.|
+|[@ictu/testx-http-keywords](https://www.npmjs.com/package/@ictu/testx-http-keywords)|Keywords to send simple http requests using the testx library.|
 |[testx-file-keywords](https://www.npmjs.com/package/testx-file-keywords)|Keywords to test file (text and pdf) content using the testx library.|
 |[testx-pop3-keywords](https://www.npmjs.com/package/testx-pop3-keywords)|Keywords to test mailserver using pop3.|
-|[testx-postgres-keywords](https://www.npmjs.com/package/testx-postgres-keywords)|Keywords to test postgres db.|
+|[@ictu/testx-keywords-postgres](https://www.npmjs.com/package/@ictu/testx-keywords-postgres)|Keywords to test postgres db.|
 |[testx-soap-keywords](https://www.npmjs.com/package/testx-soap-keywords)|Extension for testx to test soap services.|

@@ -1,6 +1,6 @@
 exports.config =
   directConnect: true
-  specs: ['spec/*']
+  specs: ['spec/custom-kw.coffee']
 
   capabilities:
     browserName: 'chrome'

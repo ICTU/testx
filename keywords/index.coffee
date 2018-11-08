@@ -5,6 +5,47 @@ q = require 'q'
 _ = require 'lodash'
 colors = require 'colors'
 
+findFirstDiffPos = (a, b) ->
+  if a == b
+    return -1
+  i = 0
+  while a[i] == b[i]
+    i++
+  i
+
+convertToSeconds = (t) ->
+  ret = 0
+  timeParts = t.split(':')
+  i = timeParts.length
+  pow = 1
+  while i > 0
+    i--
+    parsed = parseInt(timeParts[i])
+    if isNaN(parsed)
+      throw new Error "Incorrect time format."
+    ret += parsed * pow
+    pow *= 60
+  ret
+
+getDifferenceInSeconds = (str1, str2) ->
+  n1 = findFirstDiffPos(str1, str2)
+  if n1 > 0
+    t1 = str1.substring(n1).match(/[0-9:]*/)[0];
+    t2 = str2.substring(n1).match(/[0-9:]*/)[0];
+    return Math.abs(convertToSeconds(t1) - convertToSeconds(t2))
+  else
+    return 0
+
+beforeEach ->
+  jasmine.addMatchers toDifferALittleBit: -> {
+      compare: (actual, expected, maxDiff) ->
+        result = {}
+        actualDiff = getDifferenceInSeconds(actual, expected)
+        result.pass =  actualDiff < maxDiff
+        result.message = 'Expected "' + actual + '" not to differ from "' + expected + '" for more than ' + maxDiff + ' seconds, but it differs for ' + actualDiff + '.'
+        result
+  }
+
 {defunc, printable} = require '../lib/utils'
 
 DEFAULT_TIMEOUT = -> testx.params.actionTimeout || 5000
@@ -53,6 +94,14 @@ keywords =
         expect(get key).toBe val, assertFailedMsg(ctx)
       else
         expect(get key).toEqual val, assertFailedMsg(ctx)
+
+  'check time almost equals': (args, ctx) ->
+    secondsToTolerate = args['seconds to tolerate']
+    if secondsToTolerate == undefined
+      throw new Error "The element 'seconds to tolerate' has to be defined in 'check time almost equals'."
+    delete args['seconds to tolerate'];
+    for key, val of args
+      expect(get key).toDifferALittleBit val, secondsToTolerate, assertFailedMsg(ctx)
 
   'check not equals': (args, ctx) ->
     for key, val of args

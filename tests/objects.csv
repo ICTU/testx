@@ -1,4 +1,4 @@
-resultLink,css,h3.r a
+resultLink,css,div.r a
 searchBox,css,input[name='q']
 searchBtn,css,button[name='btnG']
 luckyBtn,css,button[name='btnI']
@@ -7,3 +7,4 @@ radioUnchecked,id,f4
 checkboxChecked,id,f5
 checkboxUnchecked,id,f6
 googleImg,id,hplogo
+resultStats,id,resultStats

@@ -6,3 +6,14 @@
     element1: test.resLink('{{match}}')
 - check matches:
     resultLink: '{{match}}'
+- put [sla datum/tijd op]:
+    savedDate: ${(new Date()).toString()}
+- go to:
+    url: /
+- set:
+    searchBox: ${savedDate.toString() + '\n'}
+- wait to appear:
+    element1: resultStats
+- check time almost equals [correct gevuld]:
+    seconds to tolerate: 3
+    searchBox: ${(new Date()).toString()}
