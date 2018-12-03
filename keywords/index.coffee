@@ -38,12 +38,15 @@ getDifferenceInSeconds = (str1, str2) ->
 
 beforeEach ->
   jasmine.addMatchers toDifferALittleBit: -> {
-      compare: (actual, expected, maxDiff) ->
-        result = {}
-        actualDiff = getDifferenceInSeconds(actual, expected)
-        result.pass =  actualDiff < maxDiff
-        result.message = 'Expected "' + actual + '" not to differ from "' + expected + '" for more than ' + maxDiff + ' seconds, but it differs for ' + actualDiff + '.'
-        result
+      compare: (actual, expected, maxDiff, extraMessage) ->
+        try
+          result = {}
+          actualDiff = getDifferenceInSeconds(actual, expected)
+          result.pass =  actualDiff <= maxDiff
+          result.message = 'Expected "' + actual + '" not to differ from "' + expected + '" for more than ' + maxDiff + ' seconds, but it differs for ' + actualDiff + '. ' + extraMessage
+          result
+        catch err
+          {'pass': false, 'message': err.message + ' ' + extraMessage}
   }
 
 {defunc, printable} = require '../lib/utils'
@@ -98,7 +101,7 @@ keywords =
   'check time almost equals': (args, ctx) ->
     secondsToTolerate = args['seconds to tolerate']
     if secondsToTolerate == undefined
-      throw new Error "The element 'seconds to tolerate' has to be defined in 'check time almost equals'."
+      throw new Error "The element 'seconds to tolerate' has to be defined in 'check time almost equals'. " + assertFailedMsg(ctx)
     delete args['seconds to tolerate'];
     for key, val of args
       expect(get key).toDifferALittleBit val, secondsToTolerate, assertFailedMsg(ctx)
