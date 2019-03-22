@@ -203,6 +203,7 @@ Predefined keywords are:
 
 | Keyword                | Argument name | Argument value  | Description | Supports repeating arguments |
 | ---------------------- | ------------- | --------------- |------------ | ---------------------------- |
+| analize accessibility	 |               |                 | Perform accessibility analysis on the current page. Complete results of all pages can be found in testresults/axe/accessibility-test-results||
 | check equals           |               || Checks if the value of the object is exactly equal to the expected value. |            |
 |                        | *object key*  | *expected*      || Yes |
 | check not equals       |               || Checks if the value of the object doesn't equal to the specified value. |            |

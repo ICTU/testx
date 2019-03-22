@@ -2,6 +2,12 @@ path = require 'path'
 fs = require 'fs'
 q = require 'q'
 
+AxeBuilder = require 'axe-webdriverjs'
+AxeReports = require '@ictu/axe-reports'
+
+newReport = true
+builder = AxeBuilder(browser.driver).withTags(['wcag2a', 'wcag2aa', 'wcag211'])
+
 _ = require 'lodash'
 colors = require 'colors'
 
@@ -135,6 +141,16 @@ keywords =
     for key, val of args
       expectedValue = if val.toLowerCase() == 'true' then 'true' else null # Note: It returns 'true' as string, not as boolean
       expect(testx.element(key).getAttribute('readonly')).toBe expectedValue, assertFailedMsg(ctx)
+  'analize accessibility': (args, ctx) ->
+    return new Promise (resolve, reject) ->
+      builder.analyze (err, results) ->
+        dir = 'testresults/axe'
+        if !fs.existsSync(dir)
+          fs.mkdirSync dir
+        AxeReports.processResults(results, 'csv', 'testresults/axe/accessibility-test-results', newReport);
+        newReport = false;
+        violations = if results.violations.length == 0 then 'no accessibility issues found' else "#{results.violations.length} accessibility issue(s) found on #{results.url}";
+        expect(violations).toBe('no accessibility issues found');
   'set': (args) ->
     for key, val of args
       do -> set key, val
