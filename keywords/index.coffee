@@ -141,7 +141,7 @@ keywords =
     for key, val of args
       expectedValue = if val.toLowerCase() == 'true' then 'true' else null # Note: It returns 'true' as string, not as boolean
       expect(testx.element(key).getAttribute('readonly')).toBe expectedValue, assertFailedMsg(ctx)
-  'analize accessibility': (args, ctx) ->
+  'analyze accessibility': (args, ctx) ->
     return new Promise (resolve, reject) ->
       builder.analyze (err, results) ->
         dir = 'testresults/axe'
