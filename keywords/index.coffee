@@ -149,8 +149,11 @@ keywords =
           fs.mkdirSync dir
         AxeReports.processResults(results, 'csv', 'testresults/axe/accessibility-test-results', newReport);
         newReport = false;
-        violations = if results.violations.length == 0 then 'no accessibility issues found' else "#{results.violations.length} accessibility issue(s) found on #{results.url}";
-        expect(violations).toBe('no accessibility issues found');
+        if args and args.assert in ['true', 'yes', '1'] or testx.params.assertAxeViolation
+          violations = if results.violations.length == 0 then 'no accessibility issues found' else "#{results.violations.length} accessibility issue(s) found on #{results.url}";
+          expect(violations).toBe('no accessibility issues found')
+        else
+          expect(true).toBeTruthy()
   'set': (args) ->
     for key, val of args
       do -> set key, val

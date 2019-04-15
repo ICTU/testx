@@ -173,18 +173,21 @@ params:
   testx:
     logScript: true
     actionTimeout: 4000
+    assertAxeViolation: false
 ```
 The available configuration options are
  - **logScript** - if *true* **testx** will log the test script (JSON) on the console before executing it; defaults to *false*.
  - **actionTimeout** - the timeout in milliseconds before a *get* or *set* action will fail, for example because the target element is not visible; defaults to 5000.
+ - **assertAxeViolation** - if *false* tells testx not to assert on a accessibility violation. Anyhow, all accessibility violations will be listed in the CSV report.
 
 It is also possible (since testx@2.4.0) to provide configuration directly in your *package.json* file. In this case you need to add the **testx** parameters under a *testx* field in your *package.json*, for example:
 
 ```
 ...
 "testx": {
-	"logScript": true
-	"actionTimeout": 4000
+	"logScript": true,
+	"actionTimeout": 4000,
+    "assertAxeViolation": false
 }
 ...
 ```
@@ -204,6 +207,7 @@ Predefined keywords are:
 | Keyword                | Argument name | Argument value  | Description | Supports repeating arguments |
 | ---------------------- | ------------- | --------------- |------------ | ---------------------------- |
 | analyze accessibility	 |               |                 | Perform accessibility analysis on the current page. Complete results of all pages can be found in testresults/axe/accessibility-test-results||
+|                        | assert        | yes             | Optional (default *no*); Forces assertion if assertAxeViolation setting is set to *false*.| No |
 | check equals           |               || Checks if the value of the object is exactly equal to the expected value. |            |
 |                        | *object key*  | *expected*      || Yes |
 | check not equals       |               || Checks if the value of the object doesn't equal to the specified value. |            |

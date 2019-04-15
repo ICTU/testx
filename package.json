@@ -1,6 +1,6 @@
 {
   "name": "@ictu/testx",
-  "version": "v2.12.3",
+  "version": "v2.12.4",
   "description": "A library for executing keyword driven tests with Protractor.",
   "main": "index.coffee",
   "scripts": {
@@ -47,13 +47,14 @@
   },
   "testx": {
     "logScript": false,
-    "actionTimeout": 4000
+    "actionTimeout": 4000,
+    "assertAxeViolation": false
   },
   "publishConfig": {
     "@ictu:registry": "https://registry.npmjs.org"
   },
   "devDependencies": {
     "protractor": "^5.4.2",
-    "sinon": "^7.3.0"
+    "sinon": "^7.3.1"
   }
 }
